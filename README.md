@@ -16,3 +16,10 @@ launch a Ruby interpreter
 
 
 In Ruby, you can open a class up again and modify it
+
+
+### Lists
+
+- check if a list
+
+`@names.respond_to?("each")`
