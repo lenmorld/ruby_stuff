@@ -23,3 +23,11 @@ In Ruby, you can open a class up again and modify it
 - check if a list
 
 `@names.respond_to?("each")`
+
+```
+@names.each do |name|
+  puts "Hello #{name}!"
+end
+```
+
+internally, each method `yield`s each element

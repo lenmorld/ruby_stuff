@@ -21,6 +21,11 @@ class MegaGreeter
 
 
   def say_bye
+    # Duck typing
+    # - not caring about the type of the variable
+    # just relying on what methods it supports
+    # it could be anything that supports the 'join' method
+
     if @names.nil?
       puts "..."
     elsif @names.respond_to?("join")
@@ -32,7 +37,8 @@ class MegaGreeter
 end
 
 # run file if passed as arg
-puts("Filename: #{$0}")
+puts("Current filename: #{__FILE__}")
+puts("Filename passed: #{$0}")
 
 if __FILE__ == $0
   mg = MegaGreeter.new
@@ -44,6 +50,10 @@ if __FILE__ == $0
   mg.say_bye
 
   mg.names = ["Jimmy", "Albert", "Nick"]
+  mg.say_hi
+  mg.say_bye
+
+  mg.names = nil
   mg.say_hi
   mg.say_bye
 
