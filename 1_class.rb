@@ -31,3 +31,5 @@ greeter.say_hi    # Tammy
 
 greeter2 = Greeter.new("Jimmy")
 greeter2.say_bye
+
+puts(greeter2.inspect)

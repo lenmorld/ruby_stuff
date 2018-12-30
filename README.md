@@ -17,6 +17,10 @@ launch a Ruby interpreter
 
 In Ruby, you can open a class up again and modify it
 
+`dog.inspect`
+- effectively prints all methods, attributes
+implemented on every object you'll encounter. It will return a string representation of the object.
+
 
 ### Lists
 
@@ -31,3 +35,20 @@ end
 ```
 
 internally, each method `yield`s each element
+
+
+### Projects
+
+```
+sample_proj/
+  Gemfile       # deps
+  Gemfile.lock
+```
+
+`$gem install <package>`  # install package
+
+OR
+
+add in Gemfile
+`gem 'unsplash'`
+`$ bundle`
