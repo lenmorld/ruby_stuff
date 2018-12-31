@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Photo.create([{ title: 'My Dog', description: 'my cute little dog', photo_url: 'https://unsplash.com/photos/rY79kwEEyGo'}, 
+    { title: 'My Cat', description: 'my cute little cat', photo_url: 'https://unsplash.com/photos/rY79kwEEyGo'}])
