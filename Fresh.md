@@ -2,6 +2,7 @@ fresh project
 
 #### Postgres setup
 
+(Good reference on postgres setup and quick start)
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04
 
 1. Connect to default postgres user
@@ -46,6 +47,35 @@ OR
 
 `bin/rails db:migrate RAILS_ENV=development`        # or whichever db is used in `database.yml`
 `rails server`
+
+**Any changes i `database.yml` **
+https://coderwall.com/p/dovmsg/how-to-make-your-rails-app-start-talking-to-a-postgres-database
+
+`rake db:setup`
+
+This will create development and test databases, set their owners to the user specified, and create "schema_migrations" tables in each. This table is used to record your migrations to schemas and data.
+Running Rails`
+
+
+#### Scaffold
+
+`rails generate scaffold Article title:string content:text slug:string`
+
+**Seed the DB**
+
+`seeds.rb`
+`$ rails db:seed`
+
+#### Test DB contents after seed
+
+`photo_api_development=# SELECT * FROM photos;`
+
+
+#### Manual operation to insert
+
+`created_at`,`updated_at` are mandatory though
+
+`INSERT INTO photos (title, description, photo_url, created_at, updated_at) VALUES ('cute alpacas', 'soo cuute!', 'https://unsplash.com/photos/wBRvxW_Ezms', '2018_01_01', '2018_01_01');`
 
 
 #####################################################

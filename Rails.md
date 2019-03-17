@@ -1,3 +1,7 @@
+### Good quick start guide
+
+https://codebrains.io/build-todolist-rest-api-ruby-rails/
+
 ### Rails command line
 
 https://guides.rubyonrails.org/command_line.html
@@ -93,7 +97,7 @@ Add to `params`, check `photos_controller.rb` for this
 ```
 
 
-also add it to the JSON Builder
+when modifying params, also add it to the JSON Builder
 
 ![](2018-12-30-14-43-58.png)
 
@@ -105,6 +109,25 @@ https://stackoverflow.com/questions/10365129/rails-migrations-self-up-and-self-d
 Rename a column - then do manually
 
 
+#### Routes
+
+By default, scaffold-generated routes default to a CRUD-like interface when doing
+`/photos` for example
+
+![](2019-01-01-15-38-48.png)
+
+
+To default to a json output:
+`routes.rb`
+
+`resources :photos, defaults: {format: :json}`
+
+![](2019-01-01-15-39-39.png)
+
+
+**checking routes**
+
+`rails routes`
 
 #### A good API
 
@@ -114,3 +137,42 @@ predictable and consistent: code reuse for api end points.
 static : an api should not change in a breaking way.
 simple and clear: an api should return what’s expected.
 flexible : easy to scale and maintain
+
+
+#### Testing the API
+
+
+#### CSRF
+
+When POST requests are blocked due to CSRF:
+https://stackoverflow.com/questions/35181340/rails-cant-verify-csrf-token-authenticity-when-making-a-post-request
+
+request:
+```
+curl -X POST -H "Content-Type: application/json" -d '{"title": ouse", "description": "hahaha", "photo_url": "https://example.com"}' http://localhost:3000/photos
+```
+
+result:
+```
+
+Started POST "/photos" for 127.0.0.1 at 2019-01-01 16:10:34 -0500
+   (0.6ms)  SELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC
+  ↳ /var/lib/gems/2.3.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by PhotosController#create as JSON
+  Parameters: {"title"=>"My mouse", "description"=>"hahaha", "photo_url"=>"https://example.com", "photo"=>{"title"=>"My mouse", "description"=>"hahaha", "photo_url"=>"https://example.com"}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 1.7ms)
+```
+
+###### You can deactivate CSRF as pointed out by @dcestari:
+
+```
+class ApiController < ActionController::Base
+  protect_from_forgery with: :null_session
+end
+```
+
+Updated. In Rails 5 you can generate API only applications by using the --api option:
+
+rails new appname --api
+They do not include the CSRF middleware and many other components that are superflouus.
